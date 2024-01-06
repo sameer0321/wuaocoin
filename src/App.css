@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.flow {
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.hero-bg-img {
+  background-image: url("assets/images/hero-bg-img-2.png");
+  background-repeat: no-repeat;
+  background-size: 100% 75%;
+}
+
+.bg-size {
+  background-size: 100% 75% !important;
+}
+
+.bg-size-100 {
+  background-size: 100% 100%;
+}
+
+:root {
+  --hue: 223;
+  --bg: hsl(var(--hue), 90%, 95%);
+  --fg: hsl(var(--hue), 90%, 5%);
+  --trans-dur: 0.3s;
+}
+
+main {
+  padding: 1.5em 0;
+}
+
+.ip {
+  width: 16em;
+  height: 8em;
+}
+
+.ip__track {
+  stroke: hsl(var(--hue), 90%, 90%);
+  transition: stroke var(--trans-dur);
+}
+
+.ip__worm1,
+.ip__worm2 {
+  animation: worm1 2s linear infinite;
+}
+
+.ip__worm2 {
+  animation-name: worm2;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: hsl(var(--hue), 90%, 5%);
+    --fg: hsl(var(--hue), 90%, 95%);
+  }
+
+  .ip__track {
+    stroke: hsl(var(--hue), 90%, 15%);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+/* Animation */
+@keyframes worm1 {
   from {
-    transform: rotate(0deg);
+    stroke-dashoffset: 0;
   }
+
+  50% {
+    animation-timing-function: steps(1);
+    stroke-dashoffset: -358;
+  }
+
+  50.01% {
+    animation-timing-function: linear;
+    stroke-dashoffset: 358;
+  }
+
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes worm2 {
+  from {
+    stroke-dashoffset: 358;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -358;
   }
 }
